@@ -20,9 +20,16 @@ slim_elements_df = elements_df[['id','second_name','team','element_type',
 
 slim_teams_df = teams_df[['id','name','short_name','loss','draw','win','played','points','position']]
 
+#resolving value season issue!
+slim_elements_df = slim_elements_df.astype({"value_season": float})
+#Now we would like to delete all of the players who have zero minutes of playing.
+slim_elements_df = slim_elements_df.loc[slim_elements_df.value_season > 0]
+# slim_elements_df = slim_elements_df.drop('value_season', axis=1)
+# slim_elements_df = slim_elements_df.sort_values('value',ascending=False)
+
 
 #Create connection to sql
-conn = sqlite3.connect('fpl.db')
+conn = sqlite3.connect('fpl_final.db')
 cursor = conn.cursor()
 
 command1 = """CREATE TABLE IF NOT EXISTS
@@ -34,11 +41,14 @@ teams(id INTEGER PRIMARY KEY, name TEXT, short_name TEXT, loss INTEGER, draw INT
 cursor.execute(command2)
 
 command3 = """CREATE TABLE IF NOT EXISTS
-players(id INTEGER PRIMARY KEY, second_name TEXT, team TEXT, element_type INTEGER, selected_by_percent INTEGER,
-chance_of_playing_next_round INETGER, value_season INTEGER, now_cost INTEGER, minutes INTEGER, total_points INTEGER, FOREIGN KEY(element_type) REFERENCES positions(id))"""
+players(id INTEGER PRIMARY KEY, second_name TEXT, team TEXT, element_type INTEGER, selected_by_percent REAL,
+chance_of_playing_next_round INETGER, value_season REAL, now_cost INTEGER, minutes INTEGER, total_points INTEGER, FOREIGN KEY(element_type) REFERENCES positions(id))"""
 cursor.execute(command3)
 
 slim_elements_df.to_sql(name= 'players', con= conn, if_exists= 'replace', index=False)
 slim_teams_df.to_sql(name= 'teams', con= conn, if_exists= 'replace', index=False)
 slim_elements_types_df.to_sql(name= 'positions', con= conn, if_exists= 'replace', index=False)
 conn.commit()
+
+
+print(slim_elements_df)
