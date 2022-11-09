@@ -33,8 +33,11 @@ def main():
 	for i in players:
 		i.highValuePlayers_teams_occurance()
 
-	print(player.highValuePlayers_teams_occurance_)	
-	print(player.highValuePlayers_position_occurance_)	
+	for key in player.highValuePlayers_teams_occurance_:
+		print(key, ' ', player.highValuePlayers_teams_occurance_[key])
+	print('==========')		
+	for key in player.highValuePlayers_position_occurance_:
+		print(key, ' ', player.highValuePlayers_position_occurance_[key])
 
 if __name__ =='__main__':
 	main()
