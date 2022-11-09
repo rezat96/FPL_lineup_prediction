@@ -4,6 +4,10 @@ from position import position
 class player:
 	#static attribute to keep track of number of created teams
 	numberOfPlayers = 0
+	#following dict contains the name of the teams and occurence of having players
+	#which have the value season more than 10
+	highValuePlayers_teams_occurance_ = {}
+	highValuePlayers_position_occurance_ = {}
 	#parameterized constructor
 	def __init__(self, second_name, team, position, selected_by_percent,
        chance_of_playing_next_round, value_season, now_cost, minutes,
@@ -22,10 +26,17 @@ class player:
 		self.minutes = minutes
 		self.total_points = total_points
 
-	# def get_name_position():
-	# 	self.position.plural_name
+	#find the teams which have the players with value season of more than 10 and their occurence
+	def highValuePlayers_teams_occurance(self):
+		if self.value_season >= 10:
+			if self.team.name in player.highValuePlayers_teams_occurance_: 
+				player.highValuePlayers_teams_occurance_[self.team.name] += 1
+			else:
+				player.highValuePlayers_teams_occurance_[self.team.name] = 1
 
-# t1 = team('Arsenal', 'ars', 20, 10, 8, 15)	
-# pos1 = position('DEF', 1, 4, 12)	
-# player1 = player('Reza', t1, pos1, 100, 100, 100, 6, 90, 50)
-# print(player1.team.name)
+			if 	self.position.plural_name in player.highValuePlayers_position_occurance_:
+				player.highValuePlayers_position_occurance_[self.position.plural_name] += 1
+			else:
+				player.highValuePlayers_position_occurance_[self.position.plural_name] = 1
+
+

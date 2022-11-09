@@ -17,13 +17,13 @@ def main():
 	#list teams hold all team objects
 	teams = []
 	for index, row in slim_teams_df.iterrows():
-	    teams.append(team(row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]))
+	    teams.append(team(row[1], row[2], row[3], row[4], row[5], row[8]))
 	    #teams.append(team(tuple(row[1:].tolist())))
 
 	#list positions hold all position objects
 	positions = []
 	for _, row in slim_elements_types_df.iterrows():
-		positions.append(position(row[1], row[2], row[3], row[4], row[5], row[6]))
+		positions.append(position(row[2], row[4], row[5], row[6]))
 
 	#list players hold all player objects
 	players = []
@@ -31,7 +31,10 @@ def main():
 		players.append(player(row[1], teams[row[2]-1], positions[row[3]-1], row[4], row[5], row[6], row[7], row[8], row[9]))
 	
 	for i in players:
-		print(i.second_name)
+		i.highValuePlayers_teams_occurance()
+
+	print(player.highValuePlayers_teams_occurance_)	
+	print(player.highValuePlayers_position_occurance_)	
 
 if __name__ =='__main__':
 	main()
