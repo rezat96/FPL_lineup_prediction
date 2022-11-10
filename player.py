@@ -1,7 +1,7 @@
-from team import team
-from position import position
+'''module docstring'''
 
-class player:
+class Player:
+	''' A class which represents the players '''
 	#static attribute to keep track of number of created teams
 	numberOfPlayers = 0
 	#following dict contains the name of the teams and occurence of having players
@@ -12,10 +12,11 @@ class player:
 	def __init__(self, second_name, team, position, selected_by_percent,
        chance_of_playing_next_round, value_season, now_cost, minutes,
        total_points):
+		'''parametrized constructor'''
 		#increment the static variable to keep track of the number of players
-		player.numberOfPlayers += 1
+		Player.numberOfPlayers += 1
 		#non-static attributes
-		self.id = player.numberOfPlayers
+		self.id_ = Player.numberOfPlayers
 		self.second_name = second_name
 		self.team = team
 		self.position = position
@@ -27,16 +28,15 @@ class player:
 		self.total_points = total_points
 
 	#find the teams which have the players with value season of more than 10 and their occurence
-	def highValuePlayers_teams_occurance(self):
+	def high_value_occurance(self):
+		''' high value players occurance '''
 		if self.value_season >= 10:
-			if self.team.name in player.highValuePlayers_teams_occurance_: 
-				player.highValuePlayers_teams_occurance_[self.team.name] += 1
+			if self.team.name in Player.highValuePlayers_teams_occurance_:
+				Player.highValuePlayers_teams_occurance_[self.team.name] += 1
 			else:
-				player.highValuePlayers_teams_occurance_[self.team.name] = 1
+				Player.highValuePlayers_teams_occurance_[self.team.name] = 1
 
-			if 	self.position.plural_name in player.highValuePlayers_position_occurance_:
-				player.highValuePlayers_position_occurance_[self.position.plural_name] += 1
+			if 	self.position.plural_name in Player.highValuePlayers_position_occurance_:
+				Player.highValuePlayers_position_occurance_[self.position.plural_name] += 1
 			else:
-				player.highValuePlayers_position_occurance_[self.position.plural_name] = 1
-
-
+				Player.highValuePlayers_position_occurance_[self.position.plural_name] = 1
