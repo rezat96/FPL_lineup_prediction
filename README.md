@@ -1,4 +1,4 @@
-# SOEN6441_Project
+# Project Description
 This project represents the development of an application designed for interaction with the Football Fantasy Premier League API (FPL). The primary objective of this project is to facilitate the retrieval of optimal line-up recommendations for upcoming week games by sending requests to a local database. Python is the primary programming language employed for the implementation of this application, and SQLite serves as the database system for storing tables and their associated relationships locally.
 
 The core functionality of this application is to generate a shortlist comprising 15 players, which offers guidance to users considering the utilization of their FPL wildcard. It is essential to emphasize that the Fantasy Premier League rules stipulate that no team within the FPL can feature more than three players from a single Premier League team. Furthermore, our recommended team must adhere to a budgetary constraint of 1000 units in order to be considered a viable and reasonable selection.
